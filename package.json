@@ -1,5 +1,5 @@
 {
-  "name": "admin panel",
+  "name": "AdminPanel",
   "version": "0.5.0",
   "description": "A fully responsive admin template based on AdminLTE with vue.js integration based on CoPilot",
   "author": "Andrew Kopylov <aa74ko@gmail.com>",

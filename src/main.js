@@ -5,6 +5,7 @@ import VueRouter from 'vue-router'
 import { sync } from 'vuex-router-sync'
 import routes from './routes'
 import store from './store'
+import { getData } from './store/actions'
 
 // Import Helpers for filters
 import { domain, count, prettyDate, pluralize } from './filters'
@@ -42,6 +43,9 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
+
+console.log('store 1', store)
+getData(store)
 
 sync(store, router)
 

@@ -10,5 +10,9 @@ export default {
   },
   SET_TOKEN (state, token) {
     state.token = token
+  },
+  SET_DATA (state, data) {
+    console.log('before commit SET_DATA', data)
+    state.data = data
   }
 }
