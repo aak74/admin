@@ -11,6 +11,11 @@ export default {
   SET_TOKEN (state, token) {
     state.token = token
   },
+  UPDATE_SERVICE (state, service) {
+    // state.service = service
+    let index = state.data.services.findIndex(item => item.id === +service.id)
+    state.data.services[index] = service
+  },
   SWITCH_SERVICE (state, service) {
     state.service = service
   },

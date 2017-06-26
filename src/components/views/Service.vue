@@ -5,12 +5,12 @@
         <div class="col-md-12">
           <div class="box box-info">
             <div class="box-body" v-if="service">
-              <my-control :title="'Тип'" :icon="'home'" :value="service.type" v-model="service.type" v-on:inputUpdate="update"></my-control>
-              <my-control :title="'Название'" :icon="'clock-o'" :value="service.name" v-model="service.name" v-on:inputUpdate="update"></my-control>
-              <my-control :title="'Цена'" :icon="'envelope'" :value="service.price" v-model="service.price" v-on:inputUpdate="update"></my-control>
+              <my-control :title="'Тип'" :icon="'home'" :value="service.type" vm="type" v-model="service.type" v-on:inputUpdate="update"></my-control>
+              <my-control :title="'Название'" :icon="'clock-o'" :value="service.name" vm="name" v-model="service.name" v-on:inputUpdate="update"></my-control>
+              <my-control :title="'Цена'" :icon="'envelope'" :value="service.price" vm="price" v-model="service.price" v-on:inputUpdate="update"></my-control>
             </div>
           </div>
-          <button type="button" class="btn btn-primary" name="submit" @click="save">Сохранить</button>
+          <button type="submit" class="btn btn-primary" name="submit" @click="save">Сохранить</button>
           <button type="button" class="btn btn-default" name="cancel" @click="cancel">Отменить</button>
         </div>
       </div>
@@ -36,18 +36,17 @@ export default {
     // ])
   },
   methods: {
-    update (event) {
-      console.log('inputUpdate', this, event)
+    update (field) {
+      // console.log('inputUpdate', this, field)
+      this.data[field.fieldName] = field.value
     },
     cancel () {
-      console.log('cancel service')
+      this.$router.push({ path: '/services' })
     },
-    // ...mapActions({
-    //   save: 'saveService' // проксирует this.add() в this.$store.dispatch('increment')
-    // })
     save () {
-      console.log('save service', this, this.$props, this.$data)
-      // this.$store.dispatch('saveService', service)
+      // console.log('save service', this, this.$props, this.$data)
+      this.$store.commit('UPDATE_SERVICE', this.data)
+      this.$router.push({ path: '/services' })
     }
   },
   mounted () {
