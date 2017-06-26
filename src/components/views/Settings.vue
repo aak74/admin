@@ -5,7 +5,6 @@
         <div class="col-md-12">
           <div class="box box-info">
             <div class="box-body" v-if="settings">
-              <span>{{settings}}</span>
               <my-control :title="'Адрес'" :icon="'home'" :value="settings.address"></my-control>
               <my-control :title="'Режим работы'" :icon="'clock-o'" :value="settings.schedule"></my-control>
               <my-control :title="'Email администратора'" :icon="'envelope'" :value="settings.email"></my-control>

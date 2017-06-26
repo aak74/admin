@@ -3,6 +3,7 @@ module.exports = {
   'schedule': 'с 9:00 по 20:00',
   'phone': '+7 (495) 111-83-47',
   'phoneText': 'для Москвы',
+  'email': 'admin@example.com',
   'map': {
     'image': '/images/mapImage.png',
     'coords': [55.6535242, 37.5357059]
@@ -41,7 +42,7 @@ module.exports = {
     'src': '/images/certificates/1.png',
     'alt': '5'
   }],
-  'servicesAll': [{
+  'services': [{
     'id': 1,
     'type': 'Парикмахерские услуги',
     'name': 'Стрижка женская короткие волосы (до 10 см)',
@@ -77,7 +78,7 @@ module.exports = {
     'name': 'Косметический массаж лица',
     'price': '750'
   }],
-  'services': [{
+  'servicesFav': [{
     'src': '/images/services/haircut.png',
     'title': 'Парикмахерские услуги',
     'description': 'Модельная стрижка с укладкой феном, окраска, праздничная прическа, коллагеновое насыщение волос.'

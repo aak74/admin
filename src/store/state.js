@@ -3,5 +3,7 @@ export default {
   searching: '',
   serverURI: 'http://beauty.gbdev.xyz',
   user: null,
-  token: null
+  token: null,
+  data: {},
+  serviceId: 0
 }

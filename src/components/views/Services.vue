@@ -5,6 +5,7 @@
         <div class="box">
           <!-- /.box-header -->
           <div class="box-body">
+              <span>{{ data }}</span>
               <div class="row" v-if="data">
                 <div class="col-sm-12 table-responsive">
                   <table aria-describedby="services_info" role="grid" id="list-services" class="table table-bordered table-striped dataTable">
@@ -35,35 +36,18 @@
 </template>
 
 <script>
-import api from '@/api'
-import $ from 'jquery'
+// import api from '@/api'
+// import $ from 'jquery'
 // Require needed datatables modules
 import 'datatables.net'
 import 'datatables.net-bs'
 
 export default {
   name: 'Services',
-  data () {
-    return {
-      data: this.data
+  computed: {
+    data () {
+      return this.$store.state.data.services
     }
-  },
-  mounted () {
-    api.request('get', '/api/v1/main')
-    // axios.get('http://beauty.gbdev.xyz/api/v1/main')
-      .then(response => {
-        console.log('Services Response:', response, response.data.servicesAll)
-        this.data = response.data.servicesAll
-      })
-      .catch(error => {
-        // Request failed.
-        console.log('error', error.response)
-        this.error = error.response.statusText
-      })
-
-    this.$nextTick(() => {
-      $('#list-services').DataTable()
-    })
   }
 }
 </script>

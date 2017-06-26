@@ -44,19 +44,19 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-console.log('store 1', store)
-getData(store)
-
 sync(store, router)
 
 // Start out app!
 // eslint-disable-next-line no-new
-new Vue({
+window.Vue = new Vue({
   el: '#root',
   router: router,
   store: store,
   render: h => h(AppView)
 })
+// console.log('store 1', store, myApp, myApp.$router)
+// store.commit('SWITCH_SERVICE', myApp.$router.params.id)
+getData(store)
 
 // Check local storage to handle refreshes
 if (window.localStorage) {
