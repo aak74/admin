@@ -1,5 +1,5 @@
 <template>
-  <detail :fields="fields" :back-url="'Услуги'" :commit="'UPDATE_SERVICE'" :primary-key="id"></detail>
+  <detail :fields="fields" :back-url="'Услуги'" :dispatch="'updateService'" :primary-key="id"></detail>
 </template>
 <script>
 

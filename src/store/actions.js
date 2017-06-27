@@ -15,7 +15,16 @@ export const switchService = (store, currentService) => {
   store.commit('SWITCH_SERVICE', currentService)
 }
 
-export const saveService = (store, currentService) => {
-  console.log('save', currentService)
-  // store.commit('SWITCH_SERVICE', currentService)
+export const updateService = (store, payload) => {
+  console.log('updateService', payload)
+  setTimeout(() => {
+    store.commit('UPDATE_SERVICE', payload)
+  }, 1000)
+}
+
+export const updateSettings = (store, payload) => {
+  console.log('updateSettings', payload)
+  setTimeout(() => {
+    store.commit('UPDATE_SETTINGS', payload)
+  }, 1000)
 }

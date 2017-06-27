@@ -28,7 +28,7 @@ import MyControl from './MyControl.vue'
 
 export default {
   name: 'Detail',
-  props: ['fields', 'backUrl', 'commit', 'primaryKey'],
+  props: ['fields', 'backUrl', 'dispatch', 'primaryKey'],
   methods: {
     update (field) {
       if (!this.changes) {
@@ -40,9 +40,9 @@ export default {
       this.back()
     },
     save () {
-      if (this.changes && this.$props.commit) {
-        this.$store.commit(
-          this.$props.commit,
+      if (this.changes && this.$props.dispatch) {
+        this.$store.dispatch(
+          this.$props.dispatch,
           {
             id: this.$props.primaryKey,
             changes: this.changes

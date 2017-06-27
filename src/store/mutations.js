@@ -1,3 +1,12 @@
+let updateData = (obj, changes) => {
+  for (var field in changes) {
+    if (changes.hasOwnProperty(field)) {
+      console.log('updateData', field)
+      obj[field] = changes[field]
+    }
+  }
+}
+
 export default {
   TOGGLE_LOADING (state) {
     state.callingAPI = !state.callingAPI
@@ -14,21 +23,11 @@ export default {
   UPDATE_SERVICE (state, payload) {
     console.log('UPDATE_SERVICE', state, payload)
     let index = state.data.services.findIndex(item => item.id === +payload.id)
-    for (var field in payload.changes) {
-      if (payload.changes.hasOwnProperty(field)) {
-        console.log('UPDATE_SERVICE_1', field)
-        state.data.services[index][field] = payload.changes[field]
-      }
-    }
+    updateData(state.data.services[index], payload.changes)
   },
   UPDATE_SETTINGS (state, payload) {
-    console.log('UPDATE_SERVICE', state, payload)
-    for (var field in payload.changes) {
-      if (payload.changes.hasOwnProperty(field)) {
-        console.log('UPDATE_SERVICE_1', field)
-        state.data[field] = payload.changes[field]
-      }
-    }
+    console.log('UPDATE_SETTINGS', state, payload)
+    updateData(state.data, payload.changes)
   },
   SWITCH_SERVICE (state, service) {
     state.service = service
