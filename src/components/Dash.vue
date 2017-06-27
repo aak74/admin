@@ -1,23 +1,18 @@
 <template>
   <div :class="['wrapper', classes]">
     <header class="main-header">
-	<span class="logo-mini">
-		<a href="/"><img src="/static/img/logo.png" alt="Logo" class="img-responsive logo"></a>
-	</span>
-      <!-- Header Navbar -->
+    	<span class="logo-mini">
+    		<a href="/"><img src="/static/img/logo.png" alt="Logo" class="img-responsive logo"></a>
+    	</span>
       <nav class="navbar navbar-static-top" role="navigation">
-        <!-- Sidebar toggle button-->
         <a href="javascript:;" class="sidebar-toggle" data-toggle="offcanvas" role="button">
           <span class="sr-only">Toggle navigation</span>
         </a>
       </nav>
     </header>
-    <!-- Left side column. contains the logo and sidebar -->
-    <sidebar :display-name="demo.displayName" :picture-url="demo.avatar" />
+    <sidebar/>
 
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
       <section class="content-header">
         <ol class="breadcrumb">
           <li>
@@ -27,27 +22,23 @@
           <li class="active">{{$route.name.toUpperCase()}}</li>
         </ol>
       </section>
+
       <h1 class="text-center">{{$route.meta.description}}</h1>
-
       <router-view></router-view>
-    </div>
-    <!-- /.content-wrapper -->
 
-    <!-- Main Footer -->
+    </div>
+
     <footer class="main-footer">
       <strong>Copyright &copy; {{year}}
         <a href="http://greenbrown.ru">greenbrown</a></strong>
     </footer>
   </div>
-  <!-- ./wrapper -->
 </template>
 
 <script>
-import faker from 'faker'
-import { mapState } from 'vuex'
 import config from '../config'
 import Sidebar from './Sidebar'
-import 'hideseek'
+// import 'hideseek'
 
 export default {
   name: 'Dash',
@@ -63,19 +54,6 @@ export default {
         hide_logo: config.hideLogoOnMobile
       },
       error: ''
-    }
-  },
-  computed: {
-    ...mapState([
-      'userInfo'
-    ]),
-    demo () {
-      return {
-        displayName: faker.name.findName(),
-        avatar: faker.image.avatar(),
-        email: faker.internet.email(),
-        randomCard: faker.helpers.createCard()
-      }
     }
   },
   methods: {

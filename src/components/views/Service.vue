@@ -5,13 +5,13 @@
         <div class="col-md-12">
           <div class="box box-info">
             <div class="box-body" v-if="service">
-              <my-control :title="'Тип'" :icon="'home'" :value="service.type" vm="type" v-model="service.type" v-on:inputUpdate="update"></my-control>
-              <my-control :title="'Название'" :icon="'clock-o'" :value="service.name" vm="name" v-model="service.name" v-on:inputUpdate="update"></my-control>
-              <my-control :title="'Цена'" :icon="'envelope'" :value="service.price" vm="price" v-model="service.price" v-on:inputUpdate="update"></my-control>
+              <my-control :title="'Тип'" :icon="'home'" :value="service.type" vm="type" v-on:inputUpdate="update"></my-control>
+              <my-control :title="'Название'" :icon="'clock-o'" :value="service.name" vm="name" v-on:inputUpdate="update"></my-control>
+              <my-control :title="'Цена'" :icon="'envelope'" :value="service.price" vm="price" v-on:inputUpdate="update"></my-control>
             </div>
           </div>
           <button type="submit" class="btn btn-primary" name="submit" @click="save">Сохранить</button>
-          <button type="button" class="btn btn-default" name="cancel" @click="cancel">Отменить</button>
+          <button type="cancel" class="btn btn-default" name="cancel" @click="cancel">Отменить</button>
         </div>
       </div>
     </section>
@@ -38,15 +38,27 @@ export default {
   methods: {
     update (field) {
       // console.log('inputUpdate', this, field)
-      this.data[field.fieldName] = field.value
+      if (!this.changes) {
+        this.changes = {}
+      }
+      this.changes[field.fieldName] = field.value
     },
     cancel () {
-      this.$router.push({ path: '/services' })
+      this.data = this.initialData
+      // console.log('cancel service', this, this.$props, this.$data)
+      this.$router.push({name: 'Услуги'})
     },
     save () {
-      // console.log('save service', this, this.$props, this.$data)
+      // console.log('save service', this, this.data)
+      if (this.changes) {
+        for (var changeIndex in this.changes) {
+          if (this.changes.hasOwnProperty(changeIndex)) {
+            this.data[changeIndex] = this.changes[changeIndex]
+          }
+        }
+      }
       this.$store.commit('UPDATE_SERVICE', this.data)
-      this.$router.push({ path: '/services' })
+      this.$router.push({name: 'Услуги'})
     }
   },
   mounted () {

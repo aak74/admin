@@ -13,6 +13,7 @@ export default {
   },
   UPDATE_SERVICE (state, service) {
     // state.service = service
+    console.log('UPDATE_SERVICE', state, service)
     let index = state.data.services.findIndex(item => item.id === +service.id)
     state.data.services[index] = service
   },

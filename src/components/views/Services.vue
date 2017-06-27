@@ -10,9 +10,9 @@
                   <table aria-describedby="services_info" role="grid" id="list-services" class="table table-bordered table-striped dataTable">
                     <thead>
                       <tr role="row">
-                        <th>Type</th>
-                        <th>Name</th>
-                        <th>Price</th>
+                        <th>Тип</th>
+                        <th>Название</th>
+                        <th>Цена</th>
                       </tr>
                     </thead>
                     <tbody>
