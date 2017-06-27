@@ -11,11 +11,24 @@ export default {
   SET_TOKEN (state, token) {
     state.token = token
   },
-  UPDATE_SERVICE (state, service) {
-    // state.service = service
-    console.log('UPDATE_SERVICE', state, service)
-    let index = state.data.services.findIndex(item => item.id === +service.id)
-    state.data.services[index] = service
+  UPDATE_SERVICE (state, payload) {
+    console.log('UPDATE_SERVICE', state, payload)
+    let index = state.data.services.findIndex(item => item.id === +payload.id)
+    for (var field in payload.changes) {
+      if (payload.changes.hasOwnProperty(field)) {
+        console.log('UPDATE_SERVICE_1', field)
+        state.data.services[index][field] = payload.changes[field]
+      }
+    }
+  },
+  UPDATE_SETTINGS (state, payload) {
+    console.log('UPDATE_SERVICE', state, payload)
+    for (var field in payload.changes) {
+      if (payload.changes.hasOwnProperty(field)) {
+        console.log('UPDATE_SERVICE_1', field)
+        state.data[field] = payload.changes[field]
+      }
+    }
   },
   SWITCH_SERVICE (state, service) {
     state.service = service

@@ -1,32 +1,23 @@
 <template>
-  <div>
-    <section class="content">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="box box-info">
-            <div class="box-body" v-if="settings">
-              <my-control :title="'Адрес'" :icon="'home'" :value="settings.address"></my-control>
-              <my-control :title="'Режим работы'" :icon="'clock-o'" :value="settings.schedule"></my-control>
-              <my-control :title="'Email администратора'" :icon="'envelope'" :value="settings.email"></my-control>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+  <detail :fields="fields" :back-url="'Обзор'" :commit="'UPDATE_SETTINGS'"></detail>
 </template>
 <script>
 
-import MyControl from './MyControl.vue'
+import Detail from './Detail.vue'
 
 export default {
-  name: 'Settings',
-  // data () {
-  //   return {data: this.data}
-  // },
+  name: 'Service',
   computed: {
-    settings () {
-      return this.$store.state.data
+    fields () {
+      let data = this.$store.state.data
+      console.log('data', data)
+      // return {}
+      return [
+        {value: data.id, name: 'id'},
+        {title: 'Тип', icon: 'home', value: data.address, name: 'address'},
+        {title: 'Название', icon: 'clock-o', value: data.schedule, name: 'schedule'},
+        {title: 'Email', icon: 'envelope', value: data.email, name: 'email'}
+      ]
     }
   },
   methods: {
@@ -34,14 +25,8 @@ export default {
       vueModel = ''
     }
   },
-  mounted () {
-  },
   components: {
-    MyControl
+    Detail
   }
-
 }
 </script>
-
-<style>
-</style>

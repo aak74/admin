@@ -11,7 +11,7 @@
         :placeholder="title"
         type="text"
         v-bind:value="value"
-        :fn="fn"
+        :fieldname="fieldname"
         v-on:input="updateValue($event.target.value)"
       >
     </div>
@@ -20,15 +20,15 @@
 
 <script>
   export default {
-    props: ['title', 'icon', 'value', 'fn'],
+    props: ['title', 'icon', 'value', 'fieldname'],
     methods: {
       updateValue: function (value) {
-        console.log('updateValue', value, this.$refs.input.attributes.fn.value)
+        console.log('updateValue', value, this.$refs.input.attributes.fieldname.value)
         this.$refs.input.value = value
         this.$emit(
           'inputUpdate',
           {
-            fieldName: this.$refs.input.attributes.fn.value,
+            fieldName: this.$refs.input.attributes.fieldname.value,
             value: value
           }
         )

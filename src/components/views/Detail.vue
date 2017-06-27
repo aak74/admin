@@ -10,7 +10,7 @@
                 :title="field.title"
                 :icon="field.icon"
                 :value="field.value"
-                :fn="field.name"
+                :fieldname="field.name"
                 v-on:inputUpdate="update"
               ></my-control>
             </div>
@@ -28,7 +28,7 @@ import MyControl from './MyControl.vue'
 
 export default {
   name: 'Detail',
-  props: ['fields', 'backUrl', 'commit'],
+  props: ['fields', 'backUrl', 'commit', 'primaryKey'],
   methods: {
     update (field) {
       if (!this.changes) {
@@ -37,40 +37,28 @@ export default {
       this.changes[field.fieldName] = field.value
     },
     cancel () {
-      // this.data = this.initialData
       this.back()
     },
     save () {
-      if (this.changes) {
-        for (var changeIndex in this.changes) {
-          if (this.changes.hasOwnProperty(changeIndex)) {
-            this.dataStore[changeIndex] = this.changes[changeIndex]
+      if (this.changes && this.$props.commit) {
+        this.$store.commit(
+          this.$props.commit,
+          {
+            id: this.$props.primaryKey,
+            changes: this.changes
           }
-        }
-      }
-      // console.log('save', this.dataStore)
-      if (this.$props.commit) {
-        this.$store.commit(this.$props.commit, this.dataStore)
+        )
       }
       this.back()
     },
     back () {
-      // console.log('back', this.$props.backUrl, this.$props)
       if (this.$props.backUrl !== undefined) {
-        // console.log('back2')
         this.$router.push({name: this.$props.backUrl})
       }
     }
   },
   mounted () {
-    // console.log('mounted', this, this.$route.params.id)
-    this.dataStore = {}
-    this.$props.fields.forEach((field) => {
-      this.dataStore[field.name] = field.value
-    })
     this.data = this.$props.fields
-    // console.log('mounted', this.data, this.dataStore)
-    // this.service = this.$store.getters.service(this.$route.params.id)
   },
   components: {
     MyControl
