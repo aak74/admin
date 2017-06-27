@@ -5,7 +5,7 @@ import NotFoundView from './components/404.vue'
 // Import Views - Dash
 import DashboardView from './components/views/Dashboard.vue'
 import ServicesView from './components/views/Services.vue'
-import ServiceView from './components/views/Service.vue'
+import ServiceView from './components/views/Service2.vue'
 import SettingsView from './components/views/Settings.vue'
 
 // Routes

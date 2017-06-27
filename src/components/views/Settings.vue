@@ -17,10 +17,7 @@
 </template>
 <script>
 
-// import api from '@/api'
 import MyControl from './MyControl.vue'
-// import { mapGetters } from 'vuex'
-//  import { mapState } from 'vuex'
 
 export default {
   name: 'Settings',
@@ -31,12 +28,6 @@ export default {
     settings () {
       return this.$store.state.data
     }
-    // ...mapState([
-    //   'settings'
-    // ])
-    // ...mapGetters([
-    //   'settings'
-    // ])
   },
   methods: {
     clearInput (vueModel) {
@@ -44,22 +35,6 @@ export default {
     }
   },
   mounted () {
-    // this.data = {address: '', phone: '', email: ''}
-    // let self = this
-    // console.log('r get', r.request('get', '/api/v1/main'))
-/*
-    api.request('get', '/api/v1/main')
-    // axios.get('http://beauty.gbdev.xyz/api/v1/main')
-      .then(response => {
-        console.log('Settings Response:', response)
-        this.data = response.data
-      })
-      .catch(error => {
-        // Request failed.
-        console.log('error', error.response)
-        this.error = error.response.statusText
-      })
-*/
   },
   components: {
     MyControl

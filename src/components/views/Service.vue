@@ -7,7 +7,7 @@
             <div class="box-body" v-if="service">
               <my-control :title="'Тип'" :icon="'home'" :value="service.type" vm="type" v-on:inputUpdate="update"></my-control>
               <my-control :title="'Название'" :icon="'clock-o'" :value="service.name" vm="name" v-on:inputUpdate="update"></my-control>
-              <my-control :title="'Цена'" :icon="'envelope'" :value="service.price" vm="price" v-on:inputUpdate="update"></my-control>
+              <my-control :title="'Цена'" :icon="'rouble'" :value="service.price" vm="price" v-on:inputUpdate="update"></my-control>
             </div>
           </div>
           <button type="submit" class="btn btn-primary" name="submit" @click="save">Сохранить</button>
