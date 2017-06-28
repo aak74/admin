@@ -1,5 +1,5 @@
 <template>
-  <detail :fields="fields" :back-url="" :dispatch="'updateSettings'"></detail>
+  <detail :fields="fields" :back-url="'Обзор'" :dispatch="'updateSettings'"></detail>
 </template>
 <script>
 

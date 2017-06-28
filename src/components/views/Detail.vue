@@ -41,12 +41,18 @@ export default {
     },
     save () {
       if (this.changes && this.$props.dispatch) {
+        let full = {}
+        this.$props.fields.forEach((field) => {
+          full[field.name] = (this.changes[field.name])
+            ? this.changes[field.name]
+            : field.value
+        })
         this.$store.dispatch(
           this.$props.dispatch,
           {
             id: this.$props.primaryKey,
             changes: this.changes,
-            full: this.data
+            full: full
           }
         ).then(
           result => this.back(),
