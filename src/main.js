@@ -23,6 +23,7 @@ Vue.use(VueRouter)
 
 // Routing logic
 var router = new VueRouter({
+  base: '/admin/',
   routes: routes,
   mode: 'history',
   scrollBehavior: function (to, from, savedPosition) {

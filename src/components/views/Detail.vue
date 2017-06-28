@@ -45,7 +45,8 @@ export default {
           this.$props.dispatch,
           {
             id: this.$props.primaryKey,
-            changes: this.changes
+            changes: this.changes,
+            full: this.data
           }
         ).then(
           result => this.back(),

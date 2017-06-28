@@ -18,19 +18,27 @@ export const switchService = (store, currentService) => {
 export const updateService = (store, payload) => {
   console.log('updateService', payload)
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      store.commit('UPDATE_SERVICE', payload)
-      resolve('updated')
-    }, 1000)
+    api.request('put', 'services/' + payload.id, payload.changes)
+      .then((response) => {
+        store.commit('UPDATE_SERVICE', payload)
+        resolve(response)
+      })
+      .catch((error) => {
+        reject(error)
+      })
   })
 }
 
 export const updateSettings = (store, payload) => {
   console.log('updateSettings', payload)
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      store.commit('UPDATE_SETTINGS', payload)
-      resolve('updated')
-    }, 1000)
+    api.request('post', 'settings', payload.full)
+      .then((response) => {
+        store.commit('UPDATE_SETTINGS', payload)
+        resolve(response)
+      })
+      .catch((error) => {
+        reject(error)
+      })
   })
 }
