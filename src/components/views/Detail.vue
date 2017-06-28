@@ -47,9 +47,13 @@ export default {
             id: this.$props.primaryKey,
             changes: this.changes
           }
+        ).then(
+          result => this.back(),
+          error => console.error('error', error)
         )
+      } else {
+        this.back()
       }
-      this.back()
     },
     back () {
       if (this.$props.backUrl !== undefined) {

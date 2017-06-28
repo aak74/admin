@@ -17,14 +17,20 @@ export const switchService = (store, currentService) => {
 
 export const updateService = (store, payload) => {
   console.log('updateService', payload)
-  setTimeout(() => {
-    store.commit('UPDATE_SERVICE', payload)
-  }, 1000)
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      store.commit('UPDATE_SERVICE', payload)
+      resolve('updated')
+    }, 1000)
+  })
 }
 
 export const updateSettings = (store, payload) => {
   console.log('updateSettings', payload)
-  setTimeout(() => {
-    store.commit('UPDATE_SETTINGS', payload)
-  }, 1000)
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      store.commit('UPDATE_SETTINGS', payload)
+      resolve('updated')
+    }, 1000)
+  })
 }
