@@ -1,5 +1,5 @@
 <template>
-  <detail :fields="fields" :back-url="'Обзор'" :dispatch="'updateSettings'"></detail>
+  <detail :fields="fields" :backurl="'Обзор'" :dispatch="'updateSettings'"></detail>
 </template>
 <script>
 
@@ -14,8 +14,10 @@ export default {
       // return {}
       return [
         {value: data.id, name: 'id'},
-        {title: 'Тип', icon: 'home', value: data.address, name: 'address'},
-        {title: 'Название', icon: 'clock-o', value: data.schedule, name: 'schedule'},
+        {title: 'Адрес', icon: 'home', value: data.address, name: 'address'},
+        {title: 'Режим работы', icon: 'clock-o', value: data.schedule, name: 'schedule'},
+        {title: 'Телефон', icon: 'phone', value: data.phone, name: 'phone'},
+        {title: 'Подпись под телефоном', icon: 'info', value: data.phoneText, name: 'phoneText'},
         {title: 'Email', icon: 'envelope', value: data.email, name: 'email'}
       ]
     }

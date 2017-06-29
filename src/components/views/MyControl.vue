@@ -24,7 +24,7 @@
     methods: {
       updateValue: function (value) {
         console.log('updateValue', value, this.$refs.input.attributes.fieldname.value)
-        this.$refs.input.value = value
+        // this.$refs.input.value = value
         this.$emit(
           'inputUpdate',
           {

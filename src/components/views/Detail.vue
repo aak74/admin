@@ -35,6 +35,7 @@ export default {
         this.changes = {}
       }
       this.changes[field.fieldName] = field.value
+      // console.log('update', field, this.changes)
     },
     cancel () {
       this.back()
@@ -47,6 +48,7 @@ export default {
             ? this.changes[field.name]
             : field.value
         })
+        // console.log('save', full)
         this.$store.dispatch(
           this.$props.dispatch,
           {
