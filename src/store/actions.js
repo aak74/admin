@@ -10,6 +10,16 @@ export const getData = (store) => {
   })
 }
 
+export const getSettings = (store) => {
+  api.request('get', 'settings')
+    .then((response) => {
+      store.commit('SET_SETTINGS', response.data)
+    })
+    .catch((error) => {
+      console.log('getSettings error', error)
+    })
+}
+
 export const switchService = (store, currentService) => {
   console.log('switchService', currentService)
   store.commit('SWITCH_SERVICE', currentService)

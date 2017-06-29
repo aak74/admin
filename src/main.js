@@ -5,7 +5,7 @@ import VueRouter from 'vue-router'
 import { sync } from 'vuex-router-sync'
 import routes from './routes'
 import store from './store'
-import { getData } from './store/actions'
+import { getData, getSettings } from './store/actions'
 
 // Import Helpers for filters
 import { domain, count, prettyDate, pluralize } from './filters'
@@ -57,6 +57,7 @@ window.Vue = new Vue({
 })
 // console.log('store 1', store, myApp, myApp.$router)
 // store.commit('SWITCH_SERVICE', myApp.$router.params.id)
+getSettings(store)
 getData(store)
 
 // Check local storage to handle refreshes

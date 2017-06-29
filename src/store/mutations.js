@@ -29,6 +29,10 @@ export default {
     console.log('UPDATE_SETTINGS', state, payload)
     updateData(state.data, payload.changes)
   },
+  SET_SETTINGS (state, payload) {
+    console.log('SET_SETTINGS', state, payload)
+    updateData(state.data, payload)
+  },
   SWITCH_SERVICE (state, service) {
     state.service = service
   },
