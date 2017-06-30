@@ -6,12 +6,9 @@
 import Detail from './Detail.vue'
 
 export default {
-  name: 'Service',
   computed: {
     fields () {
       let data = this.$store.state.data
-      console.log('data', data)
-      // return {}
       return [
         {value: data.id, name: 'id'},
         {title: 'Адрес', icon: 'home', value: data.address, name: 'address'},
@@ -22,11 +19,6 @@ export default {
         {title: 'Подпись под телефоном', icon: 'info', value: data.phoneText, name: 'phoneText'},
         {title: 'Email', icon: 'envelope', value: data.email, name: 'email'}
       ]
-    }
-  },
-  methods: {
-    clearInput (vueModel) {
-      vueModel = ''
     }
   },
   components: {

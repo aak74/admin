@@ -1,3 +1,5 @@
+import api from '../api'
+
 export default {
   settings: (state) => {
     console.log('getters state', state.data)
@@ -9,20 +11,38 @@ export default {
     //   'phoneText': 'для'
     // }
   },
-  service: (state, getters) => (id) => {
-    console.log('service 1', state.data.services, id)
-    if (state.data.services) {
-      let index = state.data.services.findIndex(item => item.id === +id)
-      // console.log('service 2', index);
-      if (index >= 0) {
-        return state.data.services[index]
+
+  list: (state, getters) => (table) => {
+    console.log('getters list', table)
+    return new Promise((resolve, reject) => {
+      if (state.data[table]) {
+        resolve(state.data[table])
       }
-    }
-    return {
-      'id': -1,
-      'type': '',
-      'name': '',
-      'price': ''
-    }
+      api.request('get', table)
+        .then((response) => {
+          state.data[table] = response.data
+          resolve(response.data)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  },
+  detail: (state, getters) => (table, id) => {
+    console.log('getters detail', table, id)
+    return getters.list(table).then((data) => {
+      let index = data.findIndex(item => item.id === +id)
+      console.log('getters detail then', table, data, index)
+      if (index >= 0) {
+        return data[index]
+      }
+      return {}
+    })
+    // return {
+    //   'id': -1,
+    //   'type': '',
+    //   'name': '',
+    //   'price': ''
+    // }
   }
 }

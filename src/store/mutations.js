@@ -33,6 +33,14 @@ export default {
     console.log('SET_SETTINGS', state, payload)
     updateData(state.data, payload)
   },
+  LOAD_LIST (state, payload) {
+    console.log('LOAD_LIST', state, payload)
+    state.data[payload.table] = payload.data
+  },
+  SET_APPOINTMENTS (state, payload) {
+    console.log('SET_APPOINTMENTS', state, payload)
+    state.data.appointments = payload
+  },
   SWITCH_SERVICE (state, service) {
     state.service = service
   },

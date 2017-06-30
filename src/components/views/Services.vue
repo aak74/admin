@@ -11,7 +11,6 @@
 import MyList from './List.vue'
 
 export default {
-  name: 'Service',
   data () {
     return {
       data: this.$store.state.data.services,

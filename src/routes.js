@@ -5,6 +5,8 @@ import NotFoundView from './components/404.vue'
 // Import Views - Dash
 import DashboardView from './components/views/Dashboard.vue'
 import ServicesView from './components/views/Services.vue'
+import AppointmentsView from './components/views/Appointments.vue'
+import AppointmentView from './components/views/Appointment.vue'
 import ServiceView from './components/views/Service.vue'
 import SettingsView from './components/views/Settings.vue'
 
@@ -39,6 +41,16 @@ const routes = [
         component: ServicesView,
         name: 'Услуги',
         meta: {description: 'Услуги салона'}
+      }, {
+        path: 'appointments',
+        component: AppointmentsView,
+        name: 'Заявки',
+        meta: {description: 'Заявки клиентов'}
+      }, {
+        path: 'appointments/:id',
+        component: AppointmentView,
+        name: 'Заявка',
+        meta: {description: 'Заявка клиента'}
       }
     ]
   }, {

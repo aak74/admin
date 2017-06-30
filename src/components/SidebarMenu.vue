@@ -18,11 +18,16 @@
       </router-link>
     </li>
 
+    <li class="pageLink" v-on:click="toggleMenu">
+      <router-link to="/appointments"><i class="fa fa-table"></i>
+        <span class="page">Заявки</span>
+      </router-link>
+    </li>
 
     <li class="pageLink" v-on:click="toggleMenu">
-      <router-link to="/login">
+      <router-link to="/logout">
         <i class="fa fa-circle-o text-yellow"></i>
-        <span class="page"> Login</span>
+        <span class="page"> Logout</span>
       </router-link>
     </li>
   </ul>
