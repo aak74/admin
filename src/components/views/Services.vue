@@ -1,50 +1,30 @@
 <template>
-  <section class="content">
-    <div class="row center-block">
-      <div class="col-md-12">
-        <div class="box">
-          <!-- /.box-header -->
-          <div class="box-body">
-              <div class="row" v-if="data">
-                <div class="col-sm-12 table-responsive">
-                  <table aria-describedby="services_info" role="grid" id="list-services" class="table table-bordered table-striped dataTable">
-                    <thead>
-                      <tr role="row">
-                        <th>Тип</th>
-                        <th>Название</th>
-                        <th>Цена</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr role="row" v-for="service in data">
-                        <td>{{ service.type }}</td>
-                        <td><router-link :to="'/services/' + service.id">{{ service.name }}</router-link></td>
-                        <td>{{ service.price }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <my-list
+    :fields="fields"
+    :data="data"
+    :detail-prefix="'services'"
+    :primary-key="'id'"
+  ></my-list>
 </template>
-
 <script>
 
+import MyList from './List.vue'
+
 export default {
-  name: 'Services',
-  computed: {
-    data () {
-      return this.$store.state.data.services
+  name: 'Service',
+  data () {
+    return {
+      data: this.$store.state.data.services,
+      fields: [
+        {title: 'id', name: 'id'},
+        {title: 'Тип', name: 'type'},
+        {title: 'Название', name: 'name'},
+        {title: 'Цена', name: 'price'}
+      ]
     }
+  },
+  components: {
+    MyList
   }
 }
 </script>
-
-<style>
-</style>
