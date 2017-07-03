@@ -28,7 +28,7 @@ export const switchService = (store, currentService) => {
 export const updateService = (store, payload) => {
   console.log('updateService', payload)
   return new Promise((resolve, reject) => {
-    api.request('put', 'services/' + payload.id, payload.changes)
+    api.request('put', 'services/' + payload.id, payload.full)
       .then((response) => {
         store.commit('UPDATE_SERVICE', payload)
         resolve(response)
