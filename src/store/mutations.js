@@ -25,17 +25,23 @@ export default {
     let index = state.data.services.findIndex(item => item.id === +payload.id)
     updateData(state.data.services[index], payload.changes)
   },
-  UPDATE_SETTINGS (state, payload) {
-    console.log('UPDATE_SETTINGS', state, payload)
-    updateData(state.data, payload.changes)
+  UPDATE_ENTITY (state, payload) {
+    console.log('UPDATE_ENTITY', state, payload)
+    let index = state.data[payload.table].findIndex(item => item.id === +payload.id)
+    console.log('UPDATE_ENTITY', index)
+    updateData(state.data[payload.table][index], payload.full)
   },
+  // UPDATE_SETTINGS (state, payload) {
+  //   console.log('UPDATE_SETTINGS', state, payload)
+  //   updateData(state.data, payload.changes)
+  // },
   SET_SETTINGS (state, payload) {
     console.log('SET_SETTINGS', state, payload)
     updateData(state.data, payload)
   },
   LOAD_LIST (state, payload) {
     console.log('LOAD_LIST', state, payload)
-    state.data[payload.table] = payload.data
+    state.data[payload.entity] = payload.data
   },
   SET_APPOINTMENTS (state, payload) {
     console.log('SET_APPOINTMENTS', state, payload)

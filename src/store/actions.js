@@ -20,17 +20,27 @@ export const getSettings = (store) => {
     })
 }
 
+export const getList = (store, entity) => {
+  api.request('get', 'settings')
+    .then((response) => {
+      store.commit('SET_SETTINGS', response.data)
+    })
+    .catch((error) => {
+      console.log('getSettings error', error)
+    })
+}
+
 export const switchService = (store, currentService) => {
   console.log('switchService', currentService)
   store.commit('SWITCH_SERVICE', currentService)
 }
 
-export const updateService = (store, payload) => {
-  console.log('updateService', payload)
+export const updateEntity = (store, payload) => {
+  console.log('updateEntity', payload)
   return new Promise((resolve, reject) => {
-    api.request('put', 'services/' + payload.id, payload.full)
+    api.request('put', payload.table + '/' + payload.id, payload.full)
       .then((response) => {
-        store.commit('UPDATE_SERVICE', payload)
+        store.commit('UPDATE_ENTITY', payload)
         resolve(response)
       })
       .catch((error) => {
@@ -39,6 +49,21 @@ export const updateService = (store, payload) => {
   })
 }
 
+export const createEntity = (store, payload) => {
+  console.log('createEntity', payload)
+  return new Promise((resolve, reject) => {
+    api.request('post', payload.table, payload.full)
+      .then((response) => {
+        console.log('CREATE_ENTITY', payload)
+        // store.commit('ADD_SERVICE', payload)
+        resolve(response)
+      })
+      .catch((error) => {
+        reject(error)
+      })
+  })
+}
+/*
 export const updateSettings = (store, payload) => {
   console.log('updateSettings', payload)
   return new Promise((resolve, reject) => {
@@ -52,3 +77,4 @@ export const updateSettings = (store, payload) => {
       })
   })
 }
+*/

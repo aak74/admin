@@ -9,7 +9,7 @@
                 v-if="field.title"
                 :title="field.title"
                 :icon="field.icon"
-                :value="field.value"
+                :value="data[field.name]"
                 :fieldname="field.name"
                 v-on:inputUpdate="update"
               ></my-control>
@@ -28,7 +28,7 @@ import MyControl from './MyControl.vue'
 
 export default {
   name: 'Detail',
-  props: ['fields', 'backUrl', 'dispatch', 'primaryKey'],
+  props: ['fields', 'table', 'backUrl'],
   methods: {
     update (field) {
       if (!this.changes) {
@@ -41,18 +41,26 @@ export default {
       this.back()
     },
     save () {
-      if (this.changes && this.$props.dispatch) {
+      if (this.changes && this.$props.table) {
         let full = {}
+        console.log('save', this, this.data, this.changes)
         this.$props.fields.forEach((field) => {
+          console.log('save 1', field, this.changes[field.name], this.data[field.name])
+
           full[field.name] = (this.changes[field.name])
             ? this.changes[field.name]
-            : field.value
+            : this.data[field.name]
         })
-        // console.log('save', full)
+        let dispatch = (this.$route.params.id !== 'create')
+          ? 'updateEntity'
+          : 'createEntity'
+
+        console.log('save', full, dispatch, this.$route.params.id)
         this.$store.dispatch(
-          this.$props.dispatch,
+          dispatch,
           {
-            id: this.$props.primaryKey,
+            table: this.$props.table,
+            id: this.$route.params.id,
             changes: this.changes,
             full: full
           }
@@ -70,8 +78,20 @@ export default {
       }
     }
   },
-  mounted () {
-    this.data = this.$props.fields
+  data () {
+    return {
+      data: this.data
+    }
+  },
+  created () {
+    // this.data = this.$props.fields
+    // this.fields = []
+    this.data = {}
+    let self = this
+    this.$store.getters.detail(this.$props.table, this.$route.params.id).then((data) => {
+      console.log('detail data', data)
+      self.data = data
+    })
   },
   components: {
     MyControl

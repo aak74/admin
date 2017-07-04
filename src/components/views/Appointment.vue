@@ -1,5 +1,5 @@
 <template>
-  <detail :fields="fields" :backurl="'Заявки'" :dispatch="'updateAppointments'"></detail>
+  <detail :fields="fields" :back-url="'Заявки'" :table="'appointments'"></detail>
 </template>
 <script>
 
@@ -11,21 +11,14 @@ export default {
   },
   data () {
     return {
-      fields: this.fields
-    }
-  },
-  created () {
-    this.fields = []
-    this.$store.getters.detail('appointments', this.$route.params.id).then((data) => {
-      console.log('Appointment data', data)
-      this.fields = [
-        {value: data.id, name: 'id'},
-        {title: 'Тип', icon: '', value: data.type, name: 'type'},
-        {title: 'Название', icon: '', value: data.title, name: 'title'},
-        {title: 'Имя клиента', icon: '', value: data.name, name: 'name'},
-        {title: 'Телефон', icon: '', value: data.phone, name: 'phone'}
+      fields: [
+        {name: 'id'},
+        {title: 'Тип', icon: '', name: 'type'},
+        {title: 'Название', icon: '', name: 'title'},
+        {title: 'Имя клиента', icon: '', name: 'name'},
+        {title: 'Телефон', icon: '', name: 'phone'}
       ]
-    })
+    }
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <my-list
     :fields="fields"
-    :data="data"
+    :table="'appointments'"
     :detail-prefix="'appointments'"
     :primary-key="'id'"
   ></my-list>
@@ -9,7 +9,6 @@
 <script>
 
 import MyList from './List.vue'
-import api from '../../api'
 
 export default {
   components: {
@@ -17,7 +16,6 @@ export default {
   },
   data () {
     return {
-      data: this.data,
       fields: [
         {title: 'id', name: 'id'},
         {title: 'Тип', name: 'type'},
@@ -25,18 +23,6 @@ export default {
         {title: 'Телефон', name: 'phone'}
       ]
     }
-  },
-  created () {
-    this.data = []
-    var self = this
-    api.request('get', 'appointments')
-      .then((response) => {
-        self.$store.commit('SET_APPOINTMENTS', response.data)
-        self.data = response.data
-      })
-      .catch((error) => {
-        console.log('get appointments error', error)
-      })
   }
 }
 </script>
